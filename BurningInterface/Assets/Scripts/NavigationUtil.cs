@@ -1,9 +1,11 @@
 
 using TMPro;
+using UnityCore.Audio;
 using UnityCore.Game;
 using UnityCore.Menu;
 using UnityCore.Scene;
 using UnityEngine;
+using AudioType = UnityCore.Audio.AudioType;
 
 public class NavigationUtil : MonoBehaviour
 {
@@ -18,6 +20,7 @@ public class NavigationUtil : MonoBehaviour
     {
         PageController.instance.TurnPageOff(PageType.StartMenu);
         SceneController.instance.Load(SceneType.MainGame);
+        AudioController.instance.PlayAudio(AudioType.GAMEFIGHT_ST);
     }
 
     public void OpenSettings()
@@ -30,6 +33,7 @@ public class NavigationUtil : MonoBehaviour
         GameController.instance.isRoundOver = false;
         PageController.instance.TurnPageOff(PageType.RoundComplete);
         SceneController.instance.ReloadScene();
+        AudioController.instance.PlayAudio(AudioType.GAMEFIGHT_ST);
     }
 
     public void Instruction()
@@ -44,5 +48,6 @@ public class NavigationUtil : MonoBehaviour
         ScoreController.instance.ResetScores();
         PageController.instance.TurnPageOff(PageType.RunOver,PageType.StartMenu);
         SceneController.instance.Load(SceneType.MainMenu);
+        AudioController.instance.PlayAudio(AudioType.LOBBYVISION_ST);
     }
 }

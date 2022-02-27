@@ -27,7 +27,6 @@ public class Keyhole : MonoBehaviour
         {
             m_SpriteRenderer.color = Color.red;
             isTouched = true;
-            
         }
         else
         {

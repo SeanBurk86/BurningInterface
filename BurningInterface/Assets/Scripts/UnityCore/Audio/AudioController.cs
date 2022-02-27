@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -213,21 +214,28 @@ namespace UnityCore
                 }
 
                 AudioType _conflictAudio = AudioType.none;
-                foreach (DictionaryEntry _entry in m_JobTable)
+                try
                 {
-                    AudioType _audioType = (AudioType) _entry.Key;
-                    AudioTrack _audioTrackInUse = (AudioTrack) m_AudioTable[_audioType];
-                    AudioTrack _audioTrackNeeded = (AudioTrack) m_AudioTable[_type];
-                    if (_audioTrackNeeded.source == _audioTrackInUse.source)
+                    foreach (DictionaryEntry _entry in m_JobTable)
                     {
-                        // conflict
-                        _conflictAudio = _audioType;
-                    }
+                        AudioType _audioType = (AudioType) _entry.Key;
+                        AudioTrack _audioTrackInUse = (AudioTrack) m_AudioTable[_audioType];
+                        AudioTrack _audioTrackNeeded = (AudioTrack) m_AudioTable[_type];
+                        if (_audioTrackNeeded.source == _audioTrackInUse.source)
+                        {
+                            // conflict
+                            _conflictAudio = _audioType;
+                        }
 
-                    if (_conflictAudio != AudioType.none)
-                    {
-                        RemoveJob(_conflictAudio);
+                        if (_conflictAudio != AudioType.none)
+                        {
+                            RemoveJob(_conflictAudio);
+                        }
                     }
+                }
+                catch (InvalidOperationException e)
+                {
+                    Console.WriteLine(e);
                 }
             }
 

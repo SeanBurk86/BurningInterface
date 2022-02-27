@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityCore.Audio;
 using UnityEngine;
+using AudioType = UnityCore.Audio.AudioType;
 
 public class ConnectionController : MonoBehaviour
 {
@@ -52,6 +54,7 @@ public class ConnectionController : MonoBehaviour
             if(i+1 == _connectionPath.connections.Count) 
                 _connectionPath.pathString += _connectionPath.connections[i].bottom.value;
         }
+        AudioController.instance.PlayAudio(AudioType.CONNECTIONMADE_SFX);
         connectionPaths.Add(_connectionPath);
     }
     

@@ -1,9 +1,11 @@
 
 using System;
 using TMPro;
+using UnityCore.Audio;
 using UnityCore.Game;
 using UnityCore.Menu;
 using UnityEngine;
+using AudioType = UnityCore.Audio.AudioType;
 
 public class RoundTimerController : MonoBehaviour
 {
@@ -58,6 +60,8 @@ public class RoundTimerController : MonoBehaviour
                     KeyholeController.instance.DestroyAllKeyholes();
                     PlayerInputHandler.instance.pathWriterString = "";
                     PageController.instance.TurnPageOn(PageType.RunOver);
+                    AudioController.instance.PlayAudio(AudioType.RUNOVER_SFX);
+                    AudioController.instance.PlayAudio(AudioType.RUNOVERSUNDER_ST);
                 }
             }
             else

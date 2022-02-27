@@ -1,9 +1,11 @@
 
 using System;
+using UnityCore.Audio;
 using UnityCore.Game;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using AudioType = UnityCore.Audio.AudioType;
 
 public class PlayerInputHandler : MonoBehaviour
 {
@@ -56,7 +58,10 @@ public class PlayerInputHandler : MonoBehaviour
 
     private Key GetKey(char _char)
     {
-        if (Char.IsLetter(_char)) return (Key) Enum.Parse(typeof(Key), _char.ToString());
+        if (Char.IsLetter(_char))
+        {
+            return (Key) Enum.Parse(typeof(Key), _char.ToString());
+        }
         if (Char.IsDigit(_char))
         {
             if (_char == '0')
@@ -84,12 +89,20 @@ public class PlayerInputHandler : MonoBehaviour
         {
             if (m_IsPathWriterOpen)
             {
-                if(!pathWriterString.Contains(_char.ToString().ToUpper()) 
-                   && (Char.IsDigit(_char) || Char.IsLetter(_char))) pathWriterString += _char.ToString().ToUpper();
+                if (!pathWriterString.Contains(_char.ToString().ToUpper())
+                    && (Char.IsDigit(_char) || Char.IsLetter(_char)))
+                {
+                    AudioController.instance.PlayAudio(AudioType.KEYHOLETOUCH_SFX);
+                    pathWriterString += _char.ToString().ToUpper();
+                }
             }
             else
             {
-               if(Char.IsDigit(_char) || Char.IsLetter(_char)) ConnectionController.instance.DisconnectKeyhole(_char.ToString());
+                if (Char.IsDigit(_char) || Char.IsLetter(_char))
+                {
+                    AudioController.instance.PlayAudio(AudioType.KEYHOLEDISCONNECT_SFX);
+                    ConnectionController.instance.DisconnectKeyhole(_char.ToString());
+                }
             }
         }
     }

@@ -1,8 +1,10 @@
 
 using TMPro;
+using UnityCore.Audio;
 using UnityCore.Game;
 using UnityCore.Menu;
 using UnityEngine;
+using AudioType = UnityCore.Audio.AudioType;
 
 public class ScoreController : MonoBehaviour
 {
@@ -25,7 +27,6 @@ public class ScoreController : MonoBehaviour
 
     private void Start()
     {
-        m_PlayerScoreDisplayText = PageController.instance.gameObject.GetComponent<NavigationUtil>().scoreText;
         m_PlayerScoreDisplayText.text = playerScore.ToString();
     }
 
@@ -80,6 +81,8 @@ public class ScoreController : MonoBehaviour
         KeyholeController.instance.DestroyAllKeyholes();
         PlayerInputHandler.instance.pathWriterString = "";
         PageController.instance.TurnPageOn(PageType.RoundComplete);
+        AudioController.instance.PlayAudio(AudioType.ROUNDOVER_SFX);
+        AudioController.instance.PlayAudio(AudioType.ROUNDCOMPLETENEONTRENCH_ST);
     }
 
     private void Configure()

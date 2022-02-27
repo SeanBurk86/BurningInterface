@@ -1,9 +1,11 @@
 
 using System;
 using TMPro;
+using UnityCore.Audio;
 using UnityCore.Game;
 using UnityCore.Menu;
 using UnityEngine;
+using AudioType = UnityCore.Audio.AudioType;
 
 public class RoundController : MonoBehaviour
 {
@@ -44,12 +46,14 @@ public class RoundController : MonoBehaviour
         if (EvaluatePlayerGlyph())
         {
             Log("Glyph accepted");
+            AudioController.instance.PlayAudio(AudioType.GLYPHSOLVE_SFX);
             ScoreController.instance.IncrementGlyphsSolved();
             MakeNewCurrentGlyph();
         }
         else
         {
             Log("Glyph rejected");
+            AudioController.instance.PlayAudio(AudioType.GLYPHREJECTED_SFX);
         }
     }
 

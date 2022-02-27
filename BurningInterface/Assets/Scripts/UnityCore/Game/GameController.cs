@@ -1,6 +1,8 @@
 
+using UnityCore.Audio;
 using UnityCore.Data;
 using UnityCore.Menu;
+using UnityCore.Scene;
 using UnityCore.Session;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -18,7 +20,7 @@ namespace UnityCore
             public AudioMixer audioMixer;
 
             public bool hasRoundStarted, isRoundOver;
-            
+
             #region Unity Functions
 
             private void Awake()
@@ -41,6 +43,7 @@ namespace UnityCore
                 SessionController.instance.InitializeGame(instance);
                 PageController.instance.TurnPageOn(PageType.StartMenu);
                 SetVolumeSettings();
+                AudioController.instance.PlayAudio(AudioType.LOBBYVISION_ST);
             }
 
             #endregion
@@ -49,6 +52,7 @@ namespace UnityCore
             
             public void OnInit()
             {
+                SceneController.instance.Load(SceneType.MainMenu);
             }
 
             #endregion
