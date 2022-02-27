@@ -2,7 +2,7 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
-BurningInterface[Ll]ibrary/
+BurningInterface/[Ll]ibrary/
 BurningInterface/[Tt]emp/
 BurningInterface/[Oo]bj/
 BurningInterface/[Bb]uild/
