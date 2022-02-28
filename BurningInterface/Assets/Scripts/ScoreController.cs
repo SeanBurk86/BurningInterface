@@ -38,6 +38,12 @@ public class ScoreController : MonoBehaviour
         m_PlayerScoreDisplayText.text = playerScore.ToString();
     }
 
+    public void DecrementPlayerScore(int _points)
+    {
+        playerScore -= _points;
+        m_PlayerScoreDisplayText.text = playerScore.ToString();
+    }
+
     public void IncrementGlyphsSolved()
     {
         glyphsSolved++;

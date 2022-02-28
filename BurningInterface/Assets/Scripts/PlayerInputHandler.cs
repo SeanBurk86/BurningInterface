@@ -82,7 +82,6 @@ public class PlayerInputHandler : MonoBehaviour
             {
                 if (Char.IsDigit(_char) || Char.IsLetter(_char))
                 {
-                    AudioController.instance.PlayAudio(AudioType.KEYHOLEDISCONNECT_SFX);
                     ConnectionController.instance.DisconnectKeyhole(_char.ToString());
                     garbage += _char.ToString();
                 }

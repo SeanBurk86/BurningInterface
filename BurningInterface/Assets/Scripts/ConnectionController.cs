@@ -15,6 +15,8 @@ public class ConnectionController : MonoBehaviour
     public Dictionary<Connection, ConnectionRenderer> connections = new Dictionary<Connection, ConnectionRenderer>();
 
     public List<ConnectionPath> connectionPaths = new List<ConnectionPath>();
+
+    [SerializeField] private int m_ZapPenalty = 10;
     
     private void Awake()
     {
@@ -62,6 +64,14 @@ public class ConnectionController : MonoBehaviour
     {
         _keyholeValue = _keyholeValue.ToUpper();
         Keyhole _disconnectingKeyhole = KeyholeController.instance.GetKeyholeByValue(_keyholeValue);
+        if (!_disconnectingKeyhole.isConnected)
+        {
+            Log("Penalty from disconnecting already disconnected");
+            ScoreController.instance.DecrementPlayerScore(m_ZapPenalty);
+            AudioController.instance.PlayAudio(AudioType.ZAPPENALTY_SFX);
+            return;
+        }
+        AudioController.instance.PlayAudio(AudioType.KEYHOLEDISCONNECT_SFX);
         Log("Attempting to disconnect keyhole "+_keyholeValue);
         foreach (KeyValuePair<Connection,ConnectionRenderer> _connection in connections.ToList())
         {

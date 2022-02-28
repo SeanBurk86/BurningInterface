@@ -17,7 +17,8 @@ namespace UnityCore
             RUNOVERSUNDER_ST,
             ROUNDCOMPLETENEONTRENCH_ST,
             LOBBYVISION_ST,
-            GAMEFIGHT_ST
+            GAMEFIGHT_ST,
+            ZAPPENALTY_SFX
         }
     }
 }
