@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 1
-  roundLength: 90
+  roundLength: 180
   countDownLength: 10
   roundTime: 90
   roundCountdown: 10
-  roundsCompletedTimeOffset: 5
+  roundsCompletedTimeOffset: 15
   m_TimerDisplayText: {fileID: 0}
   m_CountdownText: {fileID: 0}

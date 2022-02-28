@@ -27,6 +27,7 @@ public class RoundController : MonoBehaviour
         PageController.instance.TurnPageOn(PageType.CurrentGlyph);
         PageController.instance.TurnPageOn(PageType.RoundTimer);
         PageController.instance.TurnPageOn(PageType.CountdownTimer);
+        PageController.instance.TurnPageOn(PageType.GlyphsLeft);
         MakeNewCurrentGlyph();
     }
 
@@ -35,6 +36,7 @@ public class RoundController : MonoBehaviour
         PageController.instance.TurnPageOff(PageType.PlayerScore);
         PageController.instance.TurnPageOff(PageType.CurrentGlyph);
         PageController.instance.TurnPageOff(PageType.RoundTimer);
+        PageController.instance.TurnPageOff(PageType.GlyphsLeft);
     }
 
     private void Update()

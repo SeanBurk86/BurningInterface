@@ -10,7 +10,7 @@ using AudioType = UnityCore.Audio.AudioType;
 public class NavigationUtil : MonoBehaviour
 {
 
-    public TMP_Text countdownText, roundTimerText, glyphDisplayText, scoreText;
+    public TMP_Text countdownText, roundTimerText, glyphDisplayText;
     public void ExitGame()
     {
         Application.Quit();

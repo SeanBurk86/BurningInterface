@@ -14,7 +14,8 @@ namespace UnityCore
             Loading,
             Settings,
             StartMenu,
-            RunOver
+            RunOver,
+            GlyphsLeft
         }
     }
 }

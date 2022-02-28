@@ -1,4 +1,5 @@
 
+using System;
 using TMPro;
 using UnityCore.Audio;
 using UnityCore.Game;
@@ -12,13 +13,13 @@ public class ScoreController : MonoBehaviour
 
     public int pointsForSecondsLeft = 50;
 
-    public int glyphsPerRound = 6;
+    public int glyphsPerRound = 4;
     public int playerScore = 0;
     public int glyphsSolved = 0;
     public int connectionsMade = 0;
     public int roundsComplete = 0;
 
-    [SerializeField] private TMP_Text m_PlayerScoreDisplayText;
+    [SerializeField] private TMP_Text m_PlayerScoreDisplayText, m_GlyphsLeftText;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class ScoreController : MonoBehaviour
     private void Start()
     {
         m_PlayerScoreDisplayText.text = playerScore.ToString();
+        m_GlyphsLeftText.text = "Glyphs left: " + glyphsPerRound;
     }
 
     public void IncrementPlayerScore(int _newPoints)
@@ -39,8 +41,12 @@ public class ScoreController : MonoBehaviour
     public void IncrementGlyphsSolved()
     {
         glyphsSolved++;
+        int _glyphsLeft = glyphsPerRound - glyphsSolved;
+        m_GlyphsLeftText.text = "Glyphs left: " + _glyphsLeft;
         if (glyphsSolved % glyphsPerRound == 0)
         {
+            glyphsSolved = 0;
+            m_GlyphsLeftText.text = "Glyphs left: " + glyphsPerRound;
             TabulateScoreForGlyphSolved();
             TabulateScoreForRound();
             EndRound();
