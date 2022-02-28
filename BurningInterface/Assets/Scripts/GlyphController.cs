@@ -29,9 +29,9 @@ public class GlyphController : MonoBehaviour
         return null;
     }
 
-    private static bool NextBoolean(Random random)
+    private static bool NextBoolean(Random _random)
     {
-        return random.Next() > (Int32.MaxValue / 2);
+        return _random.Next() > (Int32.MaxValue / 2);
     }
 
     private void Configure()

@@ -2,10 +2,10 @@
 using System;
 using TMPro;
 using UnityCore.Audio;
-using UnityCore.Game;
 using UnityCore.Menu;
 using UnityEngine;
 using AudioType = UnityCore.Audio.AudioType;
+using Random = System.Random;
 
 public class RoundController : MonoBehaviour
 {
@@ -15,6 +15,12 @@ public class RoundController : MonoBehaviour
 
     public Glyph currentGlyph;
     private TMP_Text m_CurrentGlyphDisplay;
+
+    private Random m_Random;
+    private string m_PositiveChars = "1+T|";
+    private string m_NegativeChars = "0-F_";
+
+    
 
     private void Awake()
     {
@@ -63,8 +69,8 @@ public class RoundController : MonoBehaviour
 
     public void MakeNewCurrentGlyph()
     {
-        char _positiveNodeChar = '1';
-        char _negativeNodeChar = '0';
+        char _positiveNodeChar = RandomCharFromString(m_Random, m_PositiveChars);
+        char _negativeNodeChar = RandomCharFromString(m_Random, m_NegativeChars);
         currentGlyph = GlyphController.instance.GenerateGlyph();
         string _glyphDisplayString = "";
         for(int i=0;i<currentGlyph.order.Length;i++)
@@ -97,8 +103,14 @@ public class RoundController : MonoBehaviour
         {
             instance = this;
             m_CurrentGlyphDisplay = PageController.instance.gameObject.GetComponent<NavigationUtil>().glyphDisplayText;
+            m_Random = new Random();
         }
         else Destroy(gameObject);
+    }
+    
+    private static char RandomCharFromString(Random _random, string _msg)
+    {
+        return _msg[_random.Next(_msg.Length)];
     }
     
     private void Log(string _msg)
