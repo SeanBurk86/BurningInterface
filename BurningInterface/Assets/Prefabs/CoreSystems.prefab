@@ -334,6 +334,7 @@ MonoBehaviour:
   connectionsMade: 0
   roundsComplete: 0
   m_PlayerScoreDisplayText: {fileID: 0}
+  m_GlyphsLeftText: {fileID: 0}
 --- !u!114 &4900872228785243696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,6 +494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathWriterString: 
   m_IsPathWriterOpen: 0
+  garbage: 
 --- !u!114 &4900872228785243693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,7 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6a42ab759d60514b815072ab844e248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
+  debug: 0
   tracks:
   - source: {fileID: 6396816347069818576}
     audio:

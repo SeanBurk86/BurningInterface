@@ -15,7 +15,8 @@ namespace UnityCore
             Settings,
             StartMenu,
             RunOver,
-            GlyphsLeft
+            GlyphsLeft,
+            NoisePanel
         }
     }
 }

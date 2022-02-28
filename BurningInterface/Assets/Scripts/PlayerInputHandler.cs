@@ -15,6 +15,8 @@ public class PlayerInputHandler : MonoBehaviour
 
     public bool m_IsPathWriterOpen;
 
+    public string garbage;
+
     public void OnPathWriterToggleInput(InputAction.CallbackContext _context)
     {
         if (GameController.instance.hasRoundStarted && !GameController.instance.isRoundOver)
@@ -56,27 +58,6 @@ public class PlayerInputHandler : MonoBehaviour
         
     }
 
-    private Key GetKey(char _char)
-    {
-        if (Char.IsLetter(_char))
-        {
-            return (Key) Enum.Parse(typeof(Key), _char.ToString());
-        }
-        if (Char.IsDigit(_char))
-        {
-            if (_char == '0')
-            {
-                return (Key) Enum.Parse(typeof(Key), "50");
-            }
-            else
-            {
-                string _enumValue = (UInt32.Parse(_char.ToString()) + 40).ToString();
-                return (Key) Enum.Parse(typeof(Key), _enumValue);
-            }
-        }
-        return Key.Space;
-    }
-
     public void SubmitPathString()
     {
         if(pathWriterString.Length>1) ConnectionController.instance.CreateConnectionPathFromString(pathWriterString);
@@ -94,6 +75,7 @@ public class PlayerInputHandler : MonoBehaviour
                 {
                     AudioController.instance.PlayAudio(AudioType.KEYHOLETOUCH_SFX);
                     pathWriterString += _char.ToString().ToUpper();
+                    garbage += _char.ToString();
                 }
             }
             else
@@ -102,6 +84,7 @@ public class PlayerInputHandler : MonoBehaviour
                 {
                     AudioController.instance.PlayAudio(AudioType.KEYHOLEDISCONNECT_SFX);
                     ConnectionController.instance.DisconnectKeyhole(_char.ToString());
+                    garbage += _char.ToString();
                 }
             }
         }
